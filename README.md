@@ -4,18 +4,40 @@
 
 ## 安装
 
-将此仓库克隆到 Codex 的本地 Skills 目录：
+### 最简单：整段复制到 PowerShell 后按回车
 
 ```powershell
-git clone https://github.com/<你的用户名>/bleach-poetic-frontispiece.git "$env:USERPROFILE\.codex\skills\bleach-poetic-frontispiece"
+$zipUrl = 'https://github.com/Gogohoon/bleach-poetic-frontispiece/archive/refs/heads/main.zip'
+$skillRoot = Join-Path $env:USERPROFILE '.codex\skills'
+$target = Join-Path $skillRoot 'bleach-poetic-frontispiece'
+$work = Join-Path $env:TEMP ('bleach-poetic-frontispiece-' + [guid]::NewGuid())
+$zip = Join-Path $work 'skill.zip'
+
+New-Item -ItemType Directory -Path $work -Force | Out-Null
+Invoke-WebRequest -Uri $zipUrl -OutFile $zip
+Expand-Archive -LiteralPath $zip -DestinationPath $work -Force
+
+if (Test-Path $target) {
+    $backup = "${target}.backup-$(Get-Date -Format 'yyyyMMdd-HHmmss')"
+    Move-Item -LiteralPath $target -Destination $backup
+    Write-Host "已备份旧版本：$backup"
+}
+
+New-Item -ItemType Directory -Path $skillRoot -Force | Out-Null
+Move-Item -LiteralPath (Join-Path $work 'bleach-poetic-frontispiece-main') -Destination $target
+Remove-Item -LiteralPath $work -Recurse -Force
+Write-Host "安装完成：$target"
 ```
 
-归一化脚本需要 Pillow：
+脚本会自动识别你的 Windows 用户目录；若已有旧版，会先自动备份，而不会直接覆盖。完成后重新打开 Codex，或新建一个对话，再输入 `$bleach-poetic-frontispiece` 即可使用。
+
+### 仅在手动运行归一化脚本时
+
+普通使用不需要安装 Python 或其他依赖。只有你在 Codex 外部手动执行 `scripts/normalize_page.py` 时，才需要在仓库目录运行：
 
 ```powershell
 python -m pip install -r requirements.txt
 ```
-
 ## 使用
 
 在 Codex 中调用：

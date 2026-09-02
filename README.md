@@ -4,32 +4,19 @@
 
 ## 安装
 
-### 最简单：整段复制到 PowerShell 后按回车
+### 第一次安装：复制这一行到 PowerShell 后按回车
 
 ```powershell
-$zipUrl = 'https://github.com/Gogohoon/bleach-poetic-frontispiece/archive/refs/heads/main.zip'
-$skillRoot = Join-Path $env:USERPROFILE '.codex\skills'
-$target = Join-Path $skillRoot 'bleach-poetic-frontispiece'
-$work = Join-Path $env:TEMP ('bleach-poetic-frontispiece-' + [guid]::NewGuid())
-$zip = Join-Path $work 'skill.zip'
-
-New-Item -ItemType Directory -Path $work -Force | Out-Null
-Invoke-WebRequest -Uri $zipUrl -OutFile $zip
-Expand-Archive -LiteralPath $zip -DestinationPath $work -Force
-
-if (Test-Path $target) {
-    $backup = "${target}.backup-$(Get-Date -Format 'yyyyMMdd-HHmmss')"
-    Move-Item -LiteralPath $target -Destination $backup
-    Write-Host "已备份旧版本：$backup"
-}
-
-New-Item -ItemType Directory -Path $skillRoot -Force | Out-Null
-Move-Item -LiteralPath (Join-Path $work 'bleach-poetic-frontispiece-main') -Destination $target
-Remove-Item -LiteralPath $work -Recurse -Force
-Write-Host "安装完成：$target"
+git clone https://github.com/Gogohoon/bleach-poetic-frontispiece.git "$env:USERPROFILE\.codex\skills\bleach-poetic-frontispiece"
 ```
 
-脚本会自动识别你的 Windows 用户目录；若已有旧版，会先自动备份，而不会直接覆盖。完成后重新打开 Codex，或新建一个对话，再输入 `$bleach-poetic-frontispiece` 即可使用。
+完成后重新打开 Codex，或新建一个对话，再输入 `$bleach-poetic-frontispiece` 即可使用。
+
+### 已经装过、只想更新：复制这一行到 PowerShell 后按回车
+
+```powershell
+git -C "$env:USERPROFILE\.codex\skills\bleach-poetic-frontispiece" pull
+```
 
 ### 仅在手动运行归一化脚本时
 

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Bleach Poetic Frontispiece"
+  short_description: "Create a target-layout black-and-white manga chapter-page PNG."
+  default_prompt: "Use $bleach-poetic-frontispiece to turn my content into a reference-guided black-and-white manga chapter page."
+policy:
+  allow_implicit_invocation: true

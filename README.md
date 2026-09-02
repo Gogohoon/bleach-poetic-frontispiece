@@ -4,27 +4,16 @@
 
 ## 安装
 
-### 第一次安装：复制这一行到 PowerShell 后按回车
+### 将此仓库克隆到 Codex 的本地 Skills 目录：
 
 ```powershell
 git clone https://github.com/Gogohoon/bleach-poetic-frontispiece.git "$env:USERPROFILE\.codex\skills\bleach-poetic-frontispiece"
 ```
 
-完成后重新打开 Codex，或新建一个对话，再输入 `$bleach-poetic-frontispiece` 即可使用。
+### 归一化脚本需要 Pillow：
 
-### 已经装过、只想更新：复制这一行到 PowerShell 后按回车
-
-```powershell
-git -C "$env:USERPROFILE\.codex\skills\bleach-poetic-frontispiece" pull
-```
-
-### 仅在手动运行归一化脚本时
-
-普通使用不需要安装 Python 或其他依赖。只有你在 Codex 外部手动执行 `scripts/normalize_page.py` 时，才需要在仓库目录运行：
-
-```powershell
 python -m pip install -r requirements.txt
-```
+
 ## 使用
 
 在 Codex 中调用：

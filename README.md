@@ -55,4 +55,4 @@ python scripts/normalize_page.py --input <已检查的输入图.png> --output <�
 
 ## 许可证
 
-本仓库暂未附带开源许可证；在公开复用或再分发前，请先取得著作权人的明确许可。
+本项目采用 [MIT License](LICENSE)。

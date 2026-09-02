@@ -1,6 +1,6 @@
 ---
 name: bleach-poetic-frontispiece
-description: Generate one reference-guided black-and-white manga chapter-page PNG: a wide top close-up, three vertical Traditional-Chinese columns, and a near-full-width two-column chapter placard. Use for poetic manga frontispieces or experimental literary posters; not for multi-page layouts or colour posters.
+description: "Generate one reference-guided black-and-white manga chapter-page PNG: a wide top close-up, three vertical Traditional-Chinese columns, and a near-full-width two-column chapter placard. Use for poetic manga frontispieces or experimental literary posters; not for multi-page layouts or colour posters."
 ---
 
 # Bleach Poetic Frontispiece
